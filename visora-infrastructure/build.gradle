@@ -1,0 +1,16 @@
+dependencies {
+    implementation libs.springdoc.openapi.starter.webmvc.ui
+    implementation projects.visoraDomain
+    implementation projects.visoraApplication
+    implementation libs.minio
+    implementation libs.spring.boot.starter.webmvc
+    implementation libs.spring.boot.starter.thymeleaf
+    implementation libs.spring.boot.starter.mail
+    implementation libs.spring.boot.starter.security
+    implementation libs.spring.boot.starter.security.oauth2.resource.server
+    implementation libs.jjwt.api
+    runtimeOnly libs.jjwt.impl
+    runtimeOnly libs.jjwt.jackson
+    testImplementation libs.spring.boot.starter.mail.test
+    testImplementation libs.spring.boot.starter.thymeleaf.test
+}

@@ -1,0 +1,16 @@
+rootProject.name = 'visora'
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            files("gradle/libs.versions.toml")
+        }
+    }
+}
+
+include "visora-domain"
+include 'visora-data'
+include 'visora-main'
+include 'visora-application'
+include 'visora-infrastructure'

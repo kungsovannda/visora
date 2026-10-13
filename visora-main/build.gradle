@@ -1,0 +1,8 @@
+dependencies {
+    implementation projects.visoraDomain
+    implementation projects.visoraData
+    implementation projects.visoraApplication
+    implementation projects.visoraInfrastructure
+    implementation libs.spring.boot.starter.data.jpa
+    implementation libs.springdoc.openapi.starter.webmvc.ui
+}

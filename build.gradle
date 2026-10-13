@@ -1,0 +1,75 @@
+plugins {
+    id 'application'
+    id 'java'
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.spring.dependency.management) apply false
+}
+
+group = 'kh.edu.istad.visora'
+version = libs.versions.version.get()
+description = 'visora-api'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(libs.versions.javaLanguageVersion.get())
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(libs.versions.javaLanguageVersion.get())
+        }
+    }
+
+    if(project.name.endsWith("-main")){
+        apply plugin: 'org.springframework.boot'
+    }
+
+    dependencies {
+        compileOnly libs.mapstruct
+        annotationProcessor libs.mapstruct.processor
+        annotationProcessor libs.lombok.mapstruct.binding
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+        implementation libs.lombok
+        implementation libs.spring.boot.starter
+        testImplementation libs.spring.boot.starter.test
+        testImplementation libs.junit.platform.launcher
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${libs.versions.springBootVersion.get()}"
+        }
+    }
+
+    plugins.withId('org.springframework.boot') {
+        bootJar {
+            enabled = true
+        }
+        jar {
+            enabled = false
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs << '-parameters'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
+

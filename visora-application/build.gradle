@@ -1,0 +1,8 @@
+dependencies {
+    implementation libs.spring.boot.starter.webmvc
+    implementation libs.springdoc.openapi.starter.webmvc.api
+    implementation projects.visoraDomain
+    implementation libs.spring.boot.starter.validation
+    implementation libs.spring.boot.starter.security
+    api libs.spring.boot.starter.websocket
+}
